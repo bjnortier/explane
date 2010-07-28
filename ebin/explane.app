@@ -1,8 +1,9 @@
 {application,explane,
              [{description,[]},
-              {vsn,"1"},
+              {vsn,"0.1"},
               {registered,[]},
               {applications,[kernel,stdlib]},
               {mod,{explane_app,[]}},
               {env,[]},
-              {modules,[explane_server,myapp_app,myapp_sup]}]}.
+              {modules,[explane,explane_app,explane_server,explane_sup,
+                        reloader]}]}.
