@@ -1,21 +1,25 @@
 -module(explane_server).
 -behaviour(gen_server).
--export([start_link/0, say_hello/0]).
+-export([start_link/0, state/0]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
          terminate/2, code_change/3]).
+
+-record(state, {socket}).
 
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 init([]) ->
-    {ok, []}.
+    {ok, Port} = application:get_env(explane, udp_listen_port),
+    {ok, Socket} = gen_udp:open(Port, []),
+    {ok, #state{socket = Socket}}.
 
-say_hello() ->
-    gen_server:call(?MODULE, hello).
+state() ->
+    gen_server:call(?MODULE, state).
 
 %% callbacks
-handle_call(hello, _From, State) ->
-    io:format("Hello from server!~n", []),
+handle_call(state, _From, State) ->
+    io:format("server state: ~p~n", [State]),
     {reply, ok, State};
 
 handle_call(_Request, _From, State) ->
