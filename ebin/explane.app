@@ -5,5 +5,5 @@
               {applications,[kernel,stdlib]},
               {mod,{explane_app,[]}},
               {env,[{udp_listen_port,20001}]},
-              {modules,[explane,explane_app,explane_server,explane_sup,
-                        reloader]}]}.
+              {modules,[explane,explane_app,explane_packet,explane_server,
+                        explane_sup,reloader]}]}.

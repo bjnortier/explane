@@ -29,6 +29,13 @@ handle_call(_Request, _From, State) ->
 handle_cast(_Msg, State) ->
     {noreply, State}.
 
+%% In active mode (the default for a gen_udp socket), incoming packets
+%% are received as messages
+handle_info({udp, _Socket, FromIP, FromPort, Packet}, State) ->
+    Parsed = explane_packet:parse(Packet),
+    io:format("~p~n", [Parsed]),
+    {noreply, State};
+%% Discard other messages
 handle_info(_Info, State) ->
     {noreply, State}.
 
@@ -37,3 +44,8 @@ terminate(_Reason, _State) ->
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
+
+
+
+
+    
