@@ -1,4 +1,4 @@
-{application, myapp,
+{application, explane,
  [
   {description, ""},
   {vsn, "1"},
@@ -7,6 +7,6 @@
                   kernel,
                   stdlib
                  ]},
-  {mod, { myapp_app, []}},
+  {mod, { explane_app, []}},
   {env, []}
  ]}.
