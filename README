@@ -2,7 +2,7 @@ Requirements
 ------------
 
 1. Erlang. I've tested it with R13_B04, but older and newer versions should work
-2. 
+2. X-plane 9.x
 
 Getting started
 ---------------
