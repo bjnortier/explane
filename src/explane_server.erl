@@ -47,7 +47,7 @@ handle_info({udp, _Socket, _FromIP, _FromPort, Packet}, State) ->
     Values = packet_to_values(Parsed),
     Listeners = State#state.listeners,
     lists:map(fun(Listener) ->
-                      Listener ! Values
+                      Listener ! {explane, Values}
               end,
               Listeners),
     {noreply, State};
