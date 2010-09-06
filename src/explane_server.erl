@@ -82,6 +82,7 @@ packet_to_values_test() ->
      ?assertMatch(
         [
          {altitude, -1.3111454248428345},
+         {heading, 347.249755859375},
          {roll, 2.7012016773223877},
          {pitch, -0.8095226883888245},
          {speed, 5.157218933105469}],
@@ -100,6 +101,7 @@ packet_to_values_test() ->
      ?assertMatch(
         [
          {altitude, -1.3111454248428345},
+         {heading, 347.249755859375},
          {roll, 2.7012016773223877},
          {pitch, -0.8095226883888245}
         ],
@@ -121,10 +123,11 @@ packet_to_values({"DATA4", Rows}) ->
 packet_to_values([{3, [A,_,_,_,_,_,_,_]}|Rest], Acc) ->
     Acc1 = [{speed, A}|Acc],
     packet_to_values(Rest, Acc1);
-packet_to_values([{18, [A,B,_,_,_,_,_,_]}|Rest], Acc) ->
+packet_to_values([{18, [A,B,C,_,_,_,_,_]}|Rest], Acc) ->
     Acc1  = [{pitch, A}|Acc],
     Acc2 = [{roll, B}|Acc1],
-    packet_to_values(Rest, Acc2);
+    Acc3 = [{heading, C}|Acc2],
+    packet_to_values(Rest, Acc3);
 packet_to_values([{20, [_,_,C,_,_,_,_,_]}|Rest], Acc) ->
     Acc1 = [{altitude, C}|Acc],
     packet_to_values(Rest, Acc1);
