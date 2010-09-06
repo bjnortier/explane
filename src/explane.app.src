@@ -9,6 +9,7 @@
                  ]},
   {mod, { explane_app, []}},
   {env, [
-         {udp_listen_port, 20001}
+         {udp_receive_port, 20001},
+         {udp_send_port, 20000}
         ]}
  ]}.

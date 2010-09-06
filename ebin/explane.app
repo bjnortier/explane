@@ -4,6 +4,6 @@
               {registered,[]},
               {applications,[kernel,stdlib]},
               {mod,{explane_app,[]}},
-              {env,[{udp_listen_port,20001}]},
+              {env,[{udp_receive_port,20001},{udp_send_port,20000}]},
               {modules,[explane,explane_app,explane_packet,explane_server,
                         explane_sup,reloader]}]}.
